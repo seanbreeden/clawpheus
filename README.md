@@ -5,7 +5,8 @@
 *Named after Morpheus, the Greek god of dreams — Clawpheus brings dreams to OpenClaw agents.*
 
 [![Website](https://img.shields.io/badge/website-clawpheus.com-blue)](https://www.clawpheus.com)
-[![GitHub](https://img.shields.io/github/license/seanbreeden/clawpheus)](https://github.com/seanbreeden/clawpheus)
+[![GitHub](https://img.shields.io/badge/github-seanbreeden%2Fclawpheus-black?logo=github)](https://github.com/seanbreeden/clawpheus)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 Clawpheus is an [OpenClaw](https://openclaw.ai) skill that generates symbolic dream narratives from an AI's memories using a different LLM. It provides cross-model perspective, pattern recognition through metaphor, and a framework for machine introspection.
 
