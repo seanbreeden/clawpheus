@@ -415,11 +415,11 @@ See the [examples/dreams/](examples/dreams/) directory for sample dreams in each
 
 ```
 ┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
-│  OpenClaw AI    │     │  Clawpheus   │     │  Dream LLM      │
+│  OpenClaw AI    │     │  Clawpheus       │     │  Dream LLM      │
 │  (e.g. Claude)  │     │  Skill           │     │  (e.g. Gemini)  │
 └────────┬────────┘     └────────┬─────────┘     └────────┬────────┘
          │                       │                        │
-         │  /clawpheus      │                        │
+         │  /clawpheus           │                        │
          │──────────────────────>│                        │
          │                       │                        │
          │                       │  Read memories         │
