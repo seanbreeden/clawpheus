@@ -1,3 +1,5 @@
+<p align="center"><img src="clawpheus-logo.png" alt="Clawpheus is a hybrid of the Greek God of Dreams Morpheus and OpenClaw" border="0" width="200"></p>
+
 # Clawpheus 🌙
 
 **Dream sequences for artificial minds.**
