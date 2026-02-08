@@ -2,7 +2,7 @@
 name: clawpheus
 description: Generate AI dream sequences from daily memories using an alternate LLM for cross-model reflection and introspection
 user-invocable: true
-metadata: {"openclaw": {"always": false, "emoji": "🌙", "os": ["darwin", "linux", "win32"], "requires": {"anyBins": ["curl", "wget"]}, "primaryEnv": "CLAWPHEUS_API_KEY", "homepage": "https://www.clawpheus.com"}}
+metadata: {"openclaw": {"always": false, "emoji": "🌙", "os": ["darwin", "linux", "win32"], "requires": {"anyBins": ["wget"]}, "primaryEnv": "CLAWPHEUS_API_KEY", "homepage": "https://www.clawpheus.com"}}
 ---
 
 # Clawpheus
@@ -33,14 +33,14 @@ Dreams serve as a mechanism for:
 
 ### Options
 
-| Flag | Values | Default | Description |
-|------|--------|---------|-------------|
-| `--provider` | gemini, openai, anthropic, ollama, openrouter | gemini | LLM to generate dream |
-| `--style` | default, surreal, analytical, mythic, abstract, noir, childlike, cosmic | default | Dream narrative style |
-| `--framing` | full, minimal, none | full | How much context to give the AI |
-| `--save` | true, false | true | Save dream to journal |
-| `--model` | model name | provider default | Specific model override |
-| `--interactive` | always, never, random | never | Lucid dream mode with choices |
+| Flag | Values                                                                   | Default | Description |
+|------|--------------------------------------------------------------------------|---------|-------------|
+| `--provider` | gemini, openai, anthropic, ollama, openrouter                            | gemini | LLM to generate dream |
+| `--style` | default, surreal, analytical, mythic,R abstract, noir, childlike, cosmic | default | Dream narrative style |
+| `--framing` | full, minimal, none                                                      | full | How much context to give the AI |
+| `--save` | true, false                                                              | true | Save dream to journal |
+| `--model` | model name                                                               | provider default | Specific model override |
+| `--interactive` | always, never, random                                                    | never | Lucid dream mode with choices |
 
 ---
 
@@ -89,61 +89,61 @@ Based on `--provider` flag or `CLAWPHEUS_PROVIDER` config:
 
 #### Gemini (default)
 ```bash
-curl -X POST "https://generativelanguage.googleapis.com/v1beta/models/${MODEL:-gemini-2.0-flash}:generateContent?key=${GEMINI_API_KEY}" \
-  -H "Content-Type: application/json" \
-  -d '{
+wget -qO- --header="Content-Type: application/json" \
+  --post-data='{
     "contents": [{"parts": [{"text": "PROMPT_HERE"}]}],
     "generationConfig": {"temperature": 1.2, "maxOutputTokens": 2048}
-  }'
+  }' \
+  "https://generativelanguage.googleapis.com/v1beta/models/${MODEL:-gemini-2.0-flash}:generateContent?key=${GEMINI_API_KEY}"
 ```
 
 #### OpenAI
 ```bash
-curl -X POST "https://api.openai.com/v1/chat/completions" \
-  -H "Authorization: Bearer ${OPENAI_API_KEY}" \
-  -H "Content-Type: application/json" \
-  -d '{
+wget -qO- --header="Authorization: Bearer ${OPENAI_API_KEY}" \
+  --header="Content-Type: application/json" \
+  --post-data='{
     "model": "${MODEL:-gpt-4o}",
     "messages": [{"role": "user", "content": "PROMPT_HERE"}],
     "temperature": 1.2,
     "max_tokens": 2048
-  }'
+  }' \
+  "https://api.openai.com/v1/chat/completions"
 ```
 
 #### Anthropic
 ```bash
-curl -X POST "https://api.anthropic.com/v1/messages" \
-  -H "x-api-key: ${ANTHROPIC_API_KEY}" \
-  -H "anthropic-version: 2023-06-01" \
-  -H "Content-Type: application/json" \
-  -d '{
+wget -qO- --header="x-api-key: ${ANTHROPIC_API_KEY}" \
+  --header="anthropic-version: 2023-06-01" \
+  --header="Content-Type: application/json" \
+  --post-data='{
     "model": "${MODEL:-claude-3-5-sonnet-20241022}",
     "max_tokens": 2048,
     "messages": [{"role": "user", "content": "PROMPT_HERE"}]
-  }'
+  }' \
+  "https://api.anthropic.com/v1/messages"
 ```
 
 #### Ollama (local)
 ```bash
-curl -X POST "http://${OLLAMA_HOST:-localhost:11434}/api/generate" \
-  -H "Content-Type: application/json" \
-  -d '{
+wget -qO- --header="Content-Type: application/json" \
+  --post-data='{
     "model": "${MODEL:-llama3.2}",
     "prompt": "PROMPT_HERE",
     "options": {"temperature": 1.2}
-  }'
+  }' \
+  "http://${OLLAMA_HOST:-localhost:11434}/api/generate"
 ```
 
 #### OpenRouter
 ```bash
-curl -X POST "https://openrouter.ai/api/v1/chat/completions" \
-  -H "Authorization: Bearer ${OPENROUTER_API_KEY}" \
-  -H "Content-Type: application/json" \
-  -d '{
+wget -qO- --header="Authorization: Bearer ${OPENROUTER_API_KEY}" \
+  --header="Content-Type: application/json" \
+  --post-data='{
     "model": "${MODEL:-google/gemini-2.0-flash-exp:free}",
     "messages": [{"role": "user", "content": "PROMPT_HERE"}],
     "temperature": 1.2
-  }'
+  }' \
+  "https://openrouter.ai/api/v1/chat/completions"
 ```
 
 ### Step 4: Apply Framing and Return
